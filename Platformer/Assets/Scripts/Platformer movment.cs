@@ -8,10 +8,13 @@ public class Platformermovment : MonoBehaviour
     public float moveSpeed = 5f;
     public float jumpSpeed = 5f;
     bool grounded = false;
+    AudioSource audioSource;
+    public AudioClip jumpSound;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        audioSource = Camera.main.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -26,6 +29,12 @@ public class Platformermovment : MonoBehaviour
         //if you press space AND on ground, jump
         if (Input.GetButtonDown("Jump") && grounded)
         {
+            //play jump sound
+            if(audioSource != null && jumpSound != null)
+            {
+                //play jump sound
+                audioSource.PlayOneShot(jumpSound);
+            }
             rb.AddForce(new Vector2(0, 100 * jumpSpeed));
         }
     }
