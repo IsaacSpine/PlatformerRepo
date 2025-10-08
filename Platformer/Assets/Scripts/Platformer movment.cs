@@ -44,6 +44,10 @@ public class Platformermovment : MonoBehaviour
         {
             grounded = true;
         }
+        if(collision.gameObject.tag == "Enemy")
+        {
+            grounded = true;
+        }
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
